@@ -2,7 +2,7 @@ version: 0.2
 
 # env:
 #   variables:
-#     FUNCTION_NAME: "your_lambda_function_name"  # Replace with your Lambda function name
+#     FUNCTION_NAME: "nodecheck"  # Replace with your Lambda function name
 
 phases:
   install:
@@ -25,13 +25,13 @@ phases:
       - zip -r lambda-deployment-package.zip . -x "*.git*" -x "*.zip" -x "buildspec.yml"
       - ls
 
-  # post_build:
-  #   commands:
-  #     # Upload the zip file to AWS Lambda
-  #     - echo "Uploading deployment package to Lambda..."
-  #     - aws lambda update-function-code \
-  #         --function-name $FUNCTION_NAME \
-  #         --zip-file fileb://lambda-deployment-package.zip
+  post_build:
+    commands:
+      # Upload the zip file to AWS Lambda
+      - echo "Uploading deployment package to Lambda..."
+      - aws lambda update-function-code \
+          --function-name $FUNCTION_NAME \
+          --zip-file fileb://lambda-deployment-package.zip
 
 artifacts:
   files:
