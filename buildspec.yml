@@ -1,0 +1,38 @@
+version: 0.2
+
+# env:
+#   variables:
+#     FUNCTION_NAME: "your_lambda_function_name"  # Replace with your Lambda function name
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14  # You can change the Node.js version if necessary
+    # commands:
+    #   # Installing dependencies for the Lambda function
+    #   - echo "Installing dependencies..."
+    #   - npm install
+
+  build:
+    commands:
+      # Remove old zip file if exists
+      - echo "Cleaning up previous zip file..."
+      # - rm -f lambda-deployment-package.zip
+
+      # Create the zip file with the Lambda function code and dependencies
+      - ls
+      - echo "Creating deployment package..."
+      - zip -r lambda-deployment-package.zip . -x "*.git*" -x "*.zip"
+      - ls
+
+  # post_build:
+  #   commands:
+  #     # Upload the zip file to AWS Lambda
+  #     - echo "Uploading deployment package to Lambda..."
+  #     - aws lambda update-function-code \
+  #         --function-name $FUNCTION_NAME \
+  #         --zip-file fileb://lambda-deployment-package.zip
+
+artifacts:
+  files:
+    - lambda-deployment-package.zip
