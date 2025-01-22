@@ -22,7 +22,7 @@ phases:
       # Create the zip file with the Lambda function code and dependencies
       - ls
       - echo "Creating deployment package..."
-      - zip -r lambda-deployment-package.zip . -x "*.git*" -x "*.zip"
+      - zip -r lambda-deployment-package.zip . -x "*.git*" -x "*.zip" -x "buildspec.yml"
       - ls
 
   # post_build:
