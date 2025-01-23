@@ -1,8 +1,8 @@
 version: 0.2
 
-# env:
-#   variables:
-#     FUNCTION_NAME: "nodecheck"  # Replace with your Lambda function name
+env:
+  variables:
+    FUNCTION_NAME: "nodecheck"  # Replace with your Lambda function name
 
 phases:
   install:
@@ -22,7 +22,7 @@ phases:
       # Create the zip file with the Lambda function code and dependencies
       - ls
       - echo "Creating deployment package..."
-      - zip -r lambda-deployment-package.zip . -x "*.git*" -x "*.zip" -x "buildspec.yml"
+      - zip -r nodecheck.zip . -x "*.git*" -x "*.zip" -x "buildspec.yml"
       - ls
 
   post_build:
