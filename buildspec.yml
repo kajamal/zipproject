@@ -29,7 +29,7 @@ phases:
     commands:
       # Upload the zip file to AWS Lambda
       - echo "Uploading deployment package to Lambda..."
-      - aws lambda update-function-code --function-name $FUNCTION_NAME --zip-file fileb://nodecheck.zip
+      - aws lambda update-function-code --function-name $FUNCTION_NAME --zip-file fileb://nodecheck.zip --region us-east-2
 
       # - aws lambda update-function-code \
       #     --function-name $FUNCTION_NAME \
