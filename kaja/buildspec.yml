@@ -3,6 +3,8 @@ version: 0.2
 env:
   variables:
     FUNCTION_NAME: "nodecheck"  # Replace with your Lambda function name
+
+phases:
   build:
     commands:
       # Create the zip file with the Lambda function code and dependencies
@@ -16,6 +18,10 @@ env:
       # Upload the zip file to AWS Lambda
       - echo "Uploading deployment package to Lambda..."
       - aws lambda update-function-code --function-name $FUNCTION_NAME --zip-file fileb://nodecheck.zip --region us-east-2
+
 artifacts:
   files:
     - nodecheck.zip
+    
+
+    
